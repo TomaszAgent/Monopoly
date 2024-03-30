@@ -6,7 +6,7 @@ public class Dices {
     public Dices(){
         generator = new Random();
     }
-    public int roll(){
-        return generator.nextInt(7) + generator.nextInt(7);
+    public Pair<Integer, Integer> roll(){
+        return new Pair<Integer, Integer>(generator.nextInt(7), generator.nextInt(7));
     }
 }
