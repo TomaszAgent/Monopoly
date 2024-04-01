@@ -4,6 +4,7 @@ public class Utility extends Field implements Buyable{
     private Player owner;
     private final int mortgagePrice;
     private boolean mortgaged;
+    private final String type;
 
     public Utility(String name, int price, int mortgagePrice) {
         this.name = name;
@@ -11,6 +12,11 @@ public class Utility extends Field implements Buyable{
         this.mortgagePrice = mortgagePrice;
         owner = null;
         mortgaged = false;
+        type = "utility";
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

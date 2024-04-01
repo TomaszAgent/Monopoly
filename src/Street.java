@@ -9,6 +9,7 @@ public class Street extends Field implements Buyable, Expendable{
     private final String colour;
     private boolean mortgaged;
     private final int mortgagePrice;
+    private final String type;
 
     public Street(String name, int price, int housePrice, int hotelPrice, ImmutableMap<Integer, Integer> rent, String colour, int mortgagePrice){
         this.name = name;
@@ -21,6 +22,11 @@ public class Street extends Field implements Buyable, Expendable{
         houses = 0;
         owner = null;
         mortgaged = false;
+        type = "street";
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

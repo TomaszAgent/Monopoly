@@ -5,6 +5,7 @@ public class Station extends Field implements Buyable{
     private final int mortgagePrice;
     private boolean mortgaged;
     private final int baseRent;
+    private final String type;
 
     public Station(String name, int price, int mortgagePrice, int baseRent){
         this.name = name;
@@ -13,6 +14,11 @@ public class Station extends Field implements Buyable{
         this.baseRent = baseRent;
         owner = null;
         mortgaged = false;
+        type = "station";
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override
