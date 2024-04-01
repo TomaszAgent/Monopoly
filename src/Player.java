@@ -4,6 +4,7 @@ public class Player {
     private int currentField;
     private boolean playing;
     private boolean arrested;
+    private int freeJails;
 
     public Player(String name){
         this.name = name;
@@ -11,6 +12,7 @@ public class Player {
         currentField = 0;
         playing = true;
         arrested = false;
+        freeJails = 0;
     }
 
     public boolean isArrested() {
@@ -56,5 +58,16 @@ public class Player {
 
     public void setFree(){
         arrested = false;
+    }
+    public void addFreeJail(){
+        freeJails++;
+    }
+    public boolean useFreeJail(){
+        if(!arrested || freeJails == 0){
+            return false;
+        }
+        this.setFree();
+        freeJails--;
+        return true;
     }
 }

@@ -1,3 +1,3 @@
-public interface ProvidesCard<T> {
-    public T DrawCard();
+public interface ProvidesCard {
+    public Card DrawCard();
 }
