@@ -4,6 +4,6 @@ public interface Buyable {
     public int getMortgagePrice();
     public boolean buy(Player player);
     public boolean buy(Player player, int price);
-    public boolean mortgage();
-    public boolean payMortgage();
+    public boolean mortgage(Player player);
+    public boolean payMortgage(Player player);
 }
