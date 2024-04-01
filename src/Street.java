@@ -69,7 +69,7 @@ public class Street extends Field implements Buyable, Expendable{
     }
 
     public boolean buy(Player player){
-        if(owner == null || player.getMoney() < price){
+        if(owner != null || player.getMoney() < price){
             return false;
         }
         player.subtractMoney(price);
@@ -78,7 +78,7 @@ public class Street extends Field implements Buyable, Expendable{
     }
 
     public boolean buy(Player player, int price){
-        if(owner == null || player.getMoney() < price){
+        if(owner != null || player.getMoney() < price){
             return false;
         }
         player.subtractMoney(price);

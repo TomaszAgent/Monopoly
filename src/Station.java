@@ -45,7 +45,7 @@ public class Station extends Field implements Buyable{
 
     @Override
     public boolean buy(Player player){
-        if(owner == null || player.getMoney() < price){
+        if(owner != null || player.getMoney() < price){
             return false;
         }
         player.subtractMoney(price);
@@ -54,7 +54,7 @@ public class Station extends Field implements Buyable{
     }
 
     public boolean buy(Player player, int price){
-        if(owner == null || player.getMoney() < price){
+        if(owner != null || player.getMoney() < price){
             return false;
         }
         player.subtractMoney(price);
