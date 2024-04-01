@@ -1,2 +1,2 @@
-public record Neighbourhood(ThreePair<Street, Street, Street> streets) {
+public record Neighbourhood(Street first,  Street second, Street third) {
 }
