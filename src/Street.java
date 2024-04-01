@@ -58,10 +58,12 @@ public class Street extends Field implements Buyable, Expendable{
         return colour;
     }
 
+    @Override
     public boolean isMortgaged() {
         return mortgaged;
     }
 
+    @Override
     public int getMortgagePrice() {
         return mortgagePrice;
     }
@@ -154,11 +156,11 @@ public class Street extends Field implements Buyable, Expendable{
 
     public boolean payRent(Player player, ImmutableMap<String, Neighbourhood> neighbourhoods){
         int toPay = rent.get(houses);
-        ThreePair<Street, Street, Street> neighbourhoodStreets = neighbourhoods.get(colour).streets();
+        Neighbourhood neighbourhood = neighbourhoods.get(colour);
         if(
-                neighbourhoodStreets.first().getOwner() == owner &&
-                neighbourhoodStreets.second().getOwner() == owner &&
-                neighbourhoodStreets.third().getOwner() == owner
+                neighbourhood.first().getOwner() == owner &&
+                neighbourhood.second().getOwner() == owner &&
+                neighbourhood.third().getOwner() == owner
         ){
             toPay *= 2;
         }
