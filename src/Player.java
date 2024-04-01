@@ -2,17 +2,23 @@ public class Player {
     private final String name;
     private int money;
     private int currentField;
-    private boolean isPlaying;
+    private boolean playing;
+    private boolean arrested;
 
     public Player(String name){
         this.name = name;
         money = 1500;
         currentField = 0;
-        isPlaying = true;
+        playing = true;
+        arrested = false;
+    }
+
+    public boolean isArrested() {
+        return arrested;
     }
 
     public boolean isPlaying() {
-        return isPlaying;
+        return playing;
     }
 
     public String getName() {
@@ -28,7 +34,7 @@ public class Player {
     }
 
     public void lost(){
-        isPlaying = false;
+        playing = false;
     }
 
     public void Move(int spaces){
@@ -41,5 +47,14 @@ public class Player {
 
     public void subtractMoney(int quantity){
         money -= quantity;
+    }
+
+    public void arrest(){
+        arrested = true;
+        currentField = 10;
+    }
+
+    public void setFree(){
+        arrested = false;
     }
 }
