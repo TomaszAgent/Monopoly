@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Player {
     private final String name;
     private int money;
@@ -5,6 +7,8 @@ public class Player {
     private boolean playing;
     private boolean arrested;
     private int freeJails;
+    private ArrayList<Field> ownedFields;
+    private int waits;
 
     public Player(String name){
         this.name = name;
@@ -13,6 +17,8 @@ public class Player {
         playing = true;
         arrested = false;
         freeJails = 0;
+        ownedFields = new ArrayList<Field>();
+        waits = 0;
     }
 
     public boolean isArrested() {
@@ -35,12 +41,20 @@ public class Player {
         return currentField;
     }
 
+    public int getFreeJails() {
+        return freeJails;
+    }
+
+    public ArrayList<Field> getOwnedFields() {
+        return ownedFields;
+    }
+
     public void lost(){
         playing = false;
     }
 
-    public void Move(int spaces){
-        currentField += spaces;
+    public void move(int spaces){
+        currentField = (currentField + spaces) % 40;
     }
 
     public void addMoney(int quantity){
@@ -58,9 +72,13 @@ public class Player {
 
     public void setFree(){
         arrested = false;
+        waits = 0;
     }
     public void addFreeJail(){
         freeJails++;
+    }
+    public void waitsInJail(){
+        waits++;
     }
     public boolean useFreeJail(){
         if(!arrested || freeJails == 0){
@@ -69,5 +87,9 @@ public class Player {
         this.setFree();
         freeJails--;
         return true;
+    }
+
+    public void addField(Field field){
+        ownedFields.add(field);
     }
 }

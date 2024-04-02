@@ -23,7 +23,7 @@ public class CommunityChest extends Field implements ProvidesCard{
     }
 
     @Override
-    public Card DrawCard() {
+    public Card drawCard() {
         Card card = cards[currentCard];
         currentCard = (currentCard + 1) % cards.length;
         return card;

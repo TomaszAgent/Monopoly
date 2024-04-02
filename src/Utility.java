@@ -43,12 +43,21 @@ public class Utility extends Field implements Buyable{
         return mortgaged;
     }
 
+    public int getRent(Pair<Utility, Utility> utilities, Pair<Integer, Integer> dices){
+        if(utilities.first().getOwner() == owner && utilities.second().getOwner() == owner){
+            return (dices.first() + dices.second()) * 10;
+        } else {
+            return (dices.first() + dices.second()) * 4;
+        }
+    }
+
     public boolean buy(Player player){
         if(owner != null || player.getMoney() < price){
             return false;
         }
         player.subtractMoney(price);
         owner = player;
+        player.addField(this);
         return true;
     }
 

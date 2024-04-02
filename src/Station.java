@@ -56,6 +56,7 @@ public class Station extends Field implements Buyable{
         }
         player.subtractMoney(price);
         owner = player;
+        player.addField(this);
         return true;
     }
 
@@ -109,5 +110,15 @@ public class Station extends Field implements Buyable{
         player.subtractMoney(stationsCount * baseRent);
         owner.addMoney(stationsCount * baseRent);
         return true;
+    }
+
+    public int getRent(Station[] stations){
+        int stationsCount = 0;
+        for(Station station : stations){
+            if(station.getOwner() == owner){
+                stationsCount++;
+            }
+        }
+        return baseRent * stationsCount;
     }
 }

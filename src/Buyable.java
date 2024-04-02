@@ -1,4 +1,5 @@
 public interface Buyable {
+    public Player getOwner();
     public int getPrice();
     public boolean isMortgaged();
     public int getMortgagePrice();

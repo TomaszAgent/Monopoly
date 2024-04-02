@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Street extends Field implements Buyable, Expendable{
     private final String name;
     private final int price;
@@ -56,8 +58,13 @@ public class Street extends Field implements Buyable, Expendable{
         return hotelPrice;
     }
 
-    public ImmutableMap<Integer, Integer> getRent() {
-        return rent;
+    public int getRent(ImmutableMap<String, Street[]> neighbourhoods) {
+        int currentRent = rent.get(houses);
+        Street[] neighbourhood = neighbourhoods.get(colour);
+        if(Arrays.stream(neighbourhood).allMatch(e -> e.getOwner() == owner)){
+            currentRent *= 2;
+        }
+        return currentRent;
     }
 
     public String getColour() {
@@ -89,6 +96,7 @@ public class Street extends Field implements Buyable, Expendable{
         }
         player.subtractMoney(price);
         owner = player;
+        player.addField(this);
         return true;
     }
 
@@ -160,13 +168,11 @@ public class Street extends Field implements Buyable, Expendable{
         return true;
     }
 
-    public boolean payRent(Player player, ImmutableMap<String, Neighbourhood> neighbourhoods){
+    public boolean payRent(Player player, ImmutableMap<String, Street[]> neighbourhoods){
         int toPay = rent.get(houses);
-        Neighbourhood neighbourhood = neighbourhoods.get(colour);
+        Street[] neighbourhood = neighbourhoods.get(colour);
         if(
-                neighbourhood.first().getOwner() == owner &&
-                neighbourhood.second().getOwner() == owner &&
-                neighbourhood.third().getOwner() == owner
+                Arrays.stream(neighbourhood).allMatch(e -> e.getOwner() == owner)
         ){
             toPay *= 2;
         }
